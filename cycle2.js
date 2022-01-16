@@ -1,9 +1,9 @@
 let n, m;
-let adj = Array.from(Array(3)).map((i) =>
-    Array.from(Array(3)).map((i) => 0)
+let adj = Array.from(Array(100)).map((i) =>
+    Array.from(Array(100)).map((i) => 0)
   ),
-  valuation = Array.from(Array(3)).map((i) =>
-    Array.from(Array(6)).map((i) => 0)
+  valuation = Array.from(Array(100)).map((i) =>
+    Array.from(Array(100)).map((i) => 0)
   ),
   allocation = [];
 let color, parent;
@@ -12,7 +12,7 @@ let states = [];
 
 n = 3;
 m = 6;
-
+console.log(n,m);
 valuation = [
   [2, 1, 3, 0, 1, 2],
   [10, 1, 1, 1, 2, 5],
@@ -107,9 +107,13 @@ function find_source() {
 }
 
 function generateStates() {
+  console.log("n:", n, "m:", m);
+  console.log(typeof n);
+
   allocation = Array.from(Array(n)).map((i) => []);
   values = Array.from(Array(n)).map((i) => 0);
 
+  console.log(allocation);
 
   for (let i = 0; i < m; i++) {
     let src = find_source();
@@ -119,10 +123,14 @@ function generateStates() {
     }
     allocation[src].push(i);
 
+    console.log("allocation:", allocation);
+    console.log("src:", src);
+
     let sum = 0;
     for (let x of allocation[src]) {
       sum += valuation[src][x];
     }
+
     for (let j = 0; j < n; j++) {
       let res = 0,
         ser = 0,
