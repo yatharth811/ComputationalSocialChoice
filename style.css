@@ -1,0 +1,105 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--color-pallete-2),
+    var(--color-pallete-4)
+  );
+  background-size: 250% 250%; /* increasing the background size to animate the gradient */
+  /* starting the animation */
+  animation: BackgroundAnimation 25s ease infinite;
+
+  color: var(--text-color);
+}
+
+/* animation for moving the linear gradient to show the background effect */
+@keyframes BackgroundAnimation {
+  0% {
+    background-position: 0% 49%;
+  }
+  50% {
+    background-position: 100% 52%;
+  }
+  100% {
+    background-position: 0% 49%;
+  }
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+/* to remove the default outline added by chrome to highlighted input boxes and buttons */
+*:focus {
+  outline: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* CSS Variables */
+:root {
+  --color-pallete-1: #c996cc;
+  --color-pallete-2: #916bbf;
+  --color-pallete-3: #3d2c8d;
+  --color-pallete-4: #1c0c5b;
+  --text-color: white;
+
+  --nav-background-color: rgba(57, 13, 233, 0.6);
+  --nav-text-color: white;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 5rem;
+  width: 100vw;
+
+  background-color: var(--nav-background-color);
+  color: var(--nav-text-color);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.25rem;
+}
+
+.navbar .container-left {
+  color: var(--nav-text-color);
+}
+
+.navbar .container-left a {
+  color: inherit;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navbar .nav-links-container {
+  color: inherit;
+}

@@ -5,13 +5,22 @@
       src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
     ></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
 
     <style type="text/css">
       #mynetwork {
         width: 100%;
-        height: 80%;
+        height: 50vh;
         border: 1px solid olive;
       }
 
@@ -43,112 +52,146 @@
         width: 5rem;
         text-align: center;
       }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+      }
+
+      input {
+        width: 3.25rem;
+      }
+
+      #input-form {
+        text-align: center;
+      }
+      table {
+        margin: auto;
+      }
     </style>
   </head>
 
   <body>
-    <form name="calcf" id="input-form">
-      <table>
-        <tr>
-          <td valign="top">
-            <div
-              class="panel"
-              style="display: inline-block; vertical-align: text-top"
-            >
-              <div id="sectitle">Valuation Matrix</div>
+    <h1 style="text-align: center; margin-bottom: 2rem">
+      Cycle Elimination Algorithm
+    </h1>
 
-              <table>
-                <tr>
-                  <td align="center">Number of agents</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td colspan="2">Number of Goods</td>
-                </tr>
+    <div class="grid">
+      <form name="calcf" id="input-form">
+        <table>
+          <tr>
+            <td valign="top">
+              <div
+                class="panel"
+                style="display: inline-block; vertical-align: text-top"
+              >
+                <div
+                  id="sectitle"
+                  style="
+                    text-align: center;
+                    font-size: 1.75rem;
+                    font-weight: 500;
+                  "
+                >
+                  Valuation Matrix
+                </div>
 
-                <tr>
-                  <td>
-                    <input
-                      type="number"
-                      name="arow"
-                      value="4"
-                      class="in3char"
-                      min="1"
-                      id="rowsel"
-                      max="10"
-                      onchange="updateInput();"
-                      required
-                    />
-                  </td>
-                  <td>
-                    <div
-                      class="arrow-up"
-                      onClick="addRemove('row', 'add');"
-                    ></div>
-                    <div style="height: 5px"></div>
-                    <div
-                      class="arrow-down"
-                      onClick="addRemove('row', 'remove');;"
-                    ></div>
-                  </td>
-                  <td class="verybigtext">&nbsp; &#215;</td>
-                  <td>
-                    <input
-                      type="number"
-                      name="acolumn"
-                      value="4"
-                      class="in3char"
-                      min="1"
-                      id="colsel"
-                      max="10"
-                      onchange="updateInput()"
-                      required
-                    />
-                  </td>
-                  <td>
-                    <div
-                      class="arrow-left"
-                      onClick="addRemove('column', 'remove');"
-                    ></div>
-                    <div
-                      class="arrow-right"
-                      onClick="addRemove('column', 'add');"
-                    ></div>
-                  </td>
-                </tr>
-              </table>
+                <table>
+                  <tr>
+                    <td align="center">Number of agents</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td colspan="2">Number of Goods</td>
+                  </tr>
 
-              <div id="minputa"></div>
+                  <tr>
+                    <td align="center">
+                      <input
+                        type="number"
+                        name="arow"
+                        value="4"
+                        class="in3char"
+                        min="1"
+                        id="rowsel"
+                        max="10"
+                        onchange="updateInput();"
+                        required
+                      />
+                    </td>
+                    <td>
+                      <div
+                        class="arrow-up"
+                        onClick="addRemove('row', 'add');"
+                      ></div>
+                      <div style="height: 5px"></div>
+                      <div
+                        class="arrow-down"
+                        onClick="addRemove('row', 'remove');;"
+                      ></div>
+                    </td>
+                    <td class="verybigtext">&nbsp; &#215;</td>
+                    <td align="center">
+                      <input
+                        type="number"
+                        name="acolumn"
+                        value="4"
+                        class="in3char"
+                        min="1"
+                        id="colsel"
+                        max="10"
+                        onchange="updateInput()"
+                        required
+                      />
+                    </td>
+                    <td>
+                      <div
+                        class="arrow-left"
+                        onClick="addRemove('column', 'remove');"
+                      ></div>
+                      <div
+                        class="arrow-right"
+                        onClick="addRemove('column', 'add');"
+                      ></div>
+                    </td>
+                  </tr>
+                </table>
 
-              <div style="text-align: center" id="txtbtn">
-                <a href="#" onClick="return popValue('');">Clear</a>
-                <a href="#" onClick="return popValue(0);">All 0</a>
-                <a href="#" onClick="return popValue(1);">All 1</a>
-                <a href="#" onClick="return popValue('r');">Random</a>
+                <div id="minputa"></div>
+
+                <div style="text-align: center" id="txtbtn">
+                  <a href="#" onClick="return popValue('');">Clear</a>
+                  <a href="#" onClick="return popValue(0);">All 0</a>
+                  <a href="#" onClick="return popValue(1);">All 1</a>
+                  <a href="#" onClick="return popValue('r');">Random</a>
+                </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </table>
-      <button type="submit">Submit</button>
-    </form>
+            </td>
+          </tr>
+        </table>
+        <button type="submit">Submit</button>
 
-    <script></script>
+        <table id="allocation-table" style="margin-top: 1rem"></table>
+      </form>
 
-    <div id="graph-container" hidden>
-      <div id="mynetwork"></div>
-      <div>
-        <button onclick="startAnimation()" id="startAnimationButton">
-          Start
-        </button>
-        <button id="pauseResumeButton" disabled>Pause</button>
+      <div id="graph-container" style="padding-right: 0.5rem">
+        <div id="mynetwork"></div>
+        <div style="text-align: center">
+          <button
+            onclick="startAnimation()"
+            id="startAnimationButton"
+            style="margin-right: 0.4rem; margin-top: 0.75rem"
+          >
+            Start
+          </button>
+          <button id="pauseResumeButton" disabled>Pause</button>
+        </div>
+        <div id="status-text"></div>
+
+        <p style="text-align: center; margin-top: 0.6rem">
+          <button onclick="window.location.reload()">Start Again</button>
+        </p>
       </div>
-      <div id="status-text"></div>
-
-      <table id="allocation-table"></table>
-
-      <p>
-        <button onclick="window.location.reload()">Start Again</button>
-      </p>
     </div>
 
     <script type="text/javascript" src="cycle2.js"></script>
@@ -277,12 +320,14 @@
         showTable(0, true);
 
         started = false;
-        
+
         loadAnimation(edgesList)
           .then(() => console.log("Animation completed!"))
           .catch((err) => console.log("Error:", err));
 
-        form.hidden = true;
+        // form.hidden = true;
+        let inputs = document.getElementsByTagName("input");
+        for (let input of inputs) input.disabled = true;
       });
 
       // ---------------------------------------------------------------
