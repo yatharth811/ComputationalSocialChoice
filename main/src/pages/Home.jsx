@@ -180,7 +180,7 @@ const Home = (props) => {
                 Read
               </Button>
               <a
-                href="/cycle-elimination-visualize.html"
+                href="https://yatharth811.github.io/GraphVisualizer/cycle-elimination-visualize.html"
                 target="_blank"
                 onClick={(e) => e.stopPropagation()}
               >
