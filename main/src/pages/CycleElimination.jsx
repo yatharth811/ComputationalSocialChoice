@@ -4,11 +4,19 @@ import { useNavigate, Link } from "react-router-dom";
 // Styles
 import StyledHome from "../styles/pages/Home";
 
+//Mathjax
+import { MathJax, MathJaxContext } from "better-react-mathjax";
+
 // Material UI
 import { Button, IconButton } from "@mui/material";
 
 // Icons
 import * as MuiIcons from "@mui/icons-material";
+
+const Math = (props) => {
+  return <MathJax inline={true}>{props.eq}</MathJax>;
+};
+
 
 const Home = (props) => {
   const history = useNavigate();
@@ -30,11 +38,12 @@ const Home = (props) => {
       </section>
 
       <section className="text-section responsive" ref={sectionRef}>
+      <MathJaxContext>
         <h1>Cycle Elimination Algorithm</h1>
 
         <p>
           Cycle Elimination Algorithm is a fair division algorithm that outputs
-          an EF-1 Allocation in polynomial time complexity.
+          an EF1 Allocation in polynomial time complexity.
         </p>
 
         <h2>Algorithm</h2>
@@ -42,11 +51,11 @@ const Home = (props) => {
           The algorithm is as follows:
           <ol>
             <li>Fix ordering of the goods.</li>
-            <li>While ∃ unallocated goods:</li>
+            <li>While <Math eq={"\\(\\exists \\)"}/> unallocated goods:</li>
             <ol>
               <li>
-                find a node j with in-degree = 0, i.e. find an agent that no one
-                envies, allocated the good to that agent.
+                find a node <Math eq={"\\(j \\)"}/> with in-degree = 0, i.e. find an agent that no one
+                envies, allocate the good to that agent.
               </li>
               <li>
                 if there doesn’t exist a node with node with in-degree = 0, then
@@ -62,13 +71,12 @@ const Home = (props) => {
         <ul>
           <li>
             An envy graph is a directed graph with agents as vertices, and
-            directed edge from a<sub>i</sub> to a<sub>j</sub> represents that a
-            <sub>i</sub> envies a<sub>j</sub>.
+            directed edge from <Math eq={"\\(a_i \\)"}/> to <Math eq={"\\(a_j \\)"}/> represents that <Math eq={"\\(a_i \\)"}/> envies <Math eq={"\\(a_j \\)"}/>.
           </li>
           <li>
-            At every step of the algorithm, the allocation is EF-1. Since we
+            At every step of the algorithm, the allocation is EF1. Since we
             allocate good to an agent which no one envies at every step, then if
-            we remove that good, the allocation is EF-1 with respect to that
+            we remove that good, the allocation is EF1 with respect to that
             good.
           </li>
         </ul>
@@ -83,6 +91,7 @@ const Home = (props) => {
             Visualize
           </Button>
         </a>
+      </MathJaxContext>
       </section>
     </StyledHome>
   );

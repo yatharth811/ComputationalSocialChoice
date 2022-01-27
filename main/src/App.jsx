@@ -9,6 +9,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import Home from "./pages/Home";
 import CycleElimination from "./pages/CycleElimination";
 import CycleEliminationVisualize from "./pages/CycleEliminationVisualize";
+import Page404 from "./pages/Page404";
 
 // Components
 import Header from "./components/Header";
@@ -36,6 +37,8 @@ const App = (props) => {
                 path="/cycle-elimination-visualize"
                 element={<CycleEliminationVisualize />}
               />
+
+              <Route path="*" element={<Page404 />} />
             </Routes>
           </div>
         </div>
